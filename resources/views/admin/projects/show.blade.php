@@ -19,6 +19,14 @@
         </div>
 
         <div class="mt-4">
+            Technology:
+            @foreach ($project->technologies as $technology)
+            {{ $technology->name }}
+                
+            @endforeach
+        </div>
+
+        <div class="mt-4">
             {{ $project->created_at }}
         </div>
 
