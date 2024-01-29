@@ -20,10 +20,13 @@
 
         <div class="mt-4">
             Technology:
-            @foreach ($project->technologies as $technology)
-            {{ $technology->name }}
-                
-            @endforeach
+            @if (count($project->technologies) > 0)
+                @foreach ($project->technologies as $technology)
+                    {{ $technology->name }}
+                @endforeach
+            @else
+                No Technology
+            @endif
         </div>
 
         <div class="mt-4">
@@ -45,6 +48,6 @@
         <div>
             <a class="btn btn-warning" href="{{ route('admin.projects.edit', ['project' => $project->slug]) }}">Modifica</a>
         </div>
-        
+
         @include('admin.projects.partials.delete_button')
     @endsection
