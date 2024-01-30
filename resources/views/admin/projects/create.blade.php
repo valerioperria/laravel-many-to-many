@@ -50,6 +50,17 @@
             </div>
 
             <div class="mb-3">
+                Technologies:
+                @foreach ($technologies as $technology)
+                <div class="form-check">
+                    <input type="checkbox" name="technologies[]" id="technology-{{ $technology->id }}" value="{{ $technology->id }}">
+                    <label for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
+                </div>
+                    
+                @endforeach
+            </div>
+
+            <div class="mb-3">
                 <img id="preview-img" src="" alt="" style="max-height: 250px">
             </div>
 
