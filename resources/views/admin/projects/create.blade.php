@@ -53,11 +53,15 @@
                 Technologies:
                 @foreach ($technologies as $technology)
                 <div class="form-check">
-                    <input type="checkbox" name="technologies[]" id="technology-{{ $technology->id }}" value="{{ $technology->id }}">
+                    <input @checked(in_array($technology->id, old('technologies', []))) type="checkbox" name="technologies[]" id="technology-{{ $technology->id }}" value="{{ $technology->id }}">
                     <label for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
                 </div>
                     
                 @endforeach
+
+                @error('technologies')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="mb-3">

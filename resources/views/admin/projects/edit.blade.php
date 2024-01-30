@@ -8,8 +8,8 @@
         <h2>Change project</h2>
 
         <form action="{{ route('admin.projects.update', ['project' => $project->slug]) }}" method="POST">
-            @csrf
             @method('PUT')
+            @csrf
 
             <div class="mb-3 has-validation">
                 <label for="title" class="form-label">Title</label>
@@ -31,7 +31,7 @@
             <div class="mb-3">
                 <label for="type">Type</label>
                 <select class="form-select" name="type_id" id="type">
-                    <option @selected(!old('type_id', $project->type_id))value="">No type</option>
+                    <option value=""></option>
                     @foreach ($types as $type)
                         <option @selected(old('type_id', $project->type_id) == $type->id) value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
@@ -42,7 +42,7 @@
                 Technologies:
                 @foreach ($technologies as $technology)
                     <div class="form-check">
-                        <input @checked($project->technologies->contains($technology)) type="checkbox" name="technologies[]"
+                        <input @checked( $errors->any() ? in_array($technology->id, old('technologies', [])) : $project->technologies->contains($technology)) type="checkbox" name="technologies[]"
                             value="{{ $technology->id }}" id="technology-{{ $technology->id }}">
                         <label for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
                     </div>

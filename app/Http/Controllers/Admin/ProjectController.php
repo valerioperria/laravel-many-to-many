@@ -96,7 +96,7 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        dd('ciao update');
+        // dd('ciao update');
         $form_data = $request->validated();
 
         if($request->hasFile('cover_image')) {
