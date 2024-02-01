@@ -29,23 +29,27 @@
 
             <div class="mb-3">
                 <label for="cover_image" class="form-label">Image</label>
-                <input type="file" class="form-control @error('cover_image') is-invalid @enderror" id="cover_image"
+                <input type="file" class="form-control  @error('cover_image') is-invalid @enderror" id="cover_image"
                     name="cover_image">
-                @error('cover_image')
+                 @error('cover_image')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
 
-            <div class="mb-3 has-validation">
+            <div class="mb-3">
+                <img id="preview-img" src="" alt="" style="max-height: 250px">
+            </div>
+
+            <div class="mb-3 {{-- has-validation --}}">
                 <label for="type">Select type</label>
-                <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type">
+                <select class="form-select {{-- @error('type_id') is-invalid @enderror --}}" name="type_id" id="type">
                     <option @selected(old('type_id') == null) value="">No type</option>
                     @foreach ($types as $type)
                         <option @selected(old('type_id') == $type->id) value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
-                    @error('type_id')
+                    {{-- @error('type_id')
                         <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
+                    @enderror --}}
                 </select>
             </div>
 
@@ -56,12 +60,11 @@
                     <input @checked(in_array($technology->id, old('technologies', []))) type="checkbox" name="technologies[]" id="technology-{{ $technology->id }}" value="{{ $technology->id }}">
                     <label for="technology-{{ $technology->id }}">{{ $technology->name }}</label>
                 </div>
-                    
                 @endforeach
 
-                @error('technologies')
+                {{-- @error('technologies')
                     <div class="text-danger">{{ $message }}</div>
-                @enderror
+                @enderror --}}
             </div>
 
             <div class="mb-3">
